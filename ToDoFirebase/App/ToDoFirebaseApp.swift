@@ -6,12 +6,21 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct ToDoFirebaseApp: App {
+    
+    init() {
+      FirebaseApp.configure()
+        if Auth.auth().currentUser == nil {
+      Auth.auth().signInAnonymously()
+        }
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TaskListView()
         }
     }
 }
